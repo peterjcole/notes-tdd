@@ -10,6 +10,12 @@ describe 'notebook' do
     notebook.add(second_note)
     return notebook
   end
+  let(:notebook_with_same_note_twice) do 
+    notebook = Notebook.new 
+    notebook.add(note)
+    notebook.add(note)
+    return notebook
+  end
   context 'creating a notebook' do
     it 'can be created' do
       expect(notebook).to be_a(Notebook)
@@ -30,7 +36,9 @@ describe 'notebook' do
     it 'lists two stored notes as a string' do
       expect(notebook_with_notes.list).to eq("Here are your note titles:\nShopping list\nWho am I?")
     end
-    it 'has a friendly message when there are no notes stored'
+    it 'has a friendly message when there are no notes stored' do
+      expect(notebook.list).to eq("Sorry, no notes here!")
+    end
   end
 
   context 'when showing notes based on title' do
@@ -40,7 +48,12 @@ describe 'notebook' do
     it 'shows a different requested note' do
       expect(notebook_with_notes.show("Who am I?")).to eq("Who am I?:\nWhat is my purpose?")
     end
-    it 'shows both notes when there are two notes with the same title'
-    it 'has a friendly message when there are no notes found'
+    it 'shows both notes when there are two notes with the same title' do
+      expect(notebook_with_same_note_twice.show("Shopping list"))
+        .to eq("Shopping list:\nBread, milk, avocados\n\nShopping list:\nBread, milk, avocados")
+    end
+    it 'has a friendly message when there are no notes found' do
+      expect(notebook_with_notes.show("This note title does not exist")).to eq("Sorry, no notes here!")
+    end
   end
 end
