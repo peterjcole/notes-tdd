@@ -27,8 +27,20 @@ describe 'notebook' do
   end
 
   context 'when listing notes' do
-    it 'lists the notes as a string' do
+    it 'lists two stored notes as a string' do
       expect(notebook_with_notes.list).to eq("Here are your note titles:\nShopping list\nWho am I?")
     end
+    it 'has a friendly message when there are no notes stored'
+  end
+
+  context 'when showing notes based on title' do
+    it 'shows a requested note' do
+      expect(notebook_with_notes.show("Shopping list")).to eq("Shopping list:\nBread, milk, avocados")
+    end
+    it 'shows a different requested note' do
+      expect(notebook_with_notes.show("Who am I?")).to eq("Who am I?:\nWhat is my purpose?")
+    end
+    it 'shows both notes when there are two notes with the same title'
+    it 'has a friendly message when there are no notes found'
   end
 end

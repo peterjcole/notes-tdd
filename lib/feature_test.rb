@@ -19,4 +19,5 @@ notebook.add(note_two)
 # => "New note added to notebook. The notebook now contains 2 notes"
 notebook.list
 # => "Here are your note titles:\nShopping list\nWho am I?"
-
+notebook.show("Shopping list")
+# => "Shopping list\nBread, milk, avocados"
