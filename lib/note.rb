@@ -17,5 +17,4 @@ class Note
     return "New note created. Title: #{@title}. Body: #{@body}"
   end
 
-
 end
