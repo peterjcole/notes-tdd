@@ -21,3 +21,10 @@ notebook.list
 # => "Here are your note titles:\nShopping list\nWho am I?"
 notebook.show("Shopping list")
 # => "Shopping list\nBread, milk, avocados"
+# binding.pry
+notebook.remove("Shopping list")
+# => "Shopping list deleted!"
+notebook.list
+# => Here are your note titles:\nWho am I?
+notebook.show("Shopping list")
+# => "Sorry, no notes here!"

@@ -31,6 +31,29 @@ class Notebook
     end
   end
 
+  def remove(title)
+    num_deleted = 0
+    @notes.delete_if do |note|
+      if note.title == title
+        num_deleted += 1
+        true
+      end
+    end
+    case num_deleted
+    when 0
+      return no_notes
+    when 1
+      return "#{title} deleted!"
+    else
+      return "#{num_deleted} notes named '#{title}' deleted!" 
+    end
+    if num_deleted == 1
+      return "#{title} deleted!"
+    else
+      return "#{num_deleted} notes named '#{title}' deleted!"
+    end
+  end
+
   private
   
   def no_notes

@@ -56,4 +56,28 @@ describe 'notebook' do
       expect(notebook_with_notes.show("This note title does not exist")).to eq("Sorry, no notes here!")
     end
   end
+
+  context 'when removing notes based on title' do
+    it 'returns a friendly message' do
+      expect(notebook_with_notes.remove("Shopping list")).to eq("Shopping list deleted!")
+    end
+
+    it 'returns a friendly message when more than one note is deleted' do
+      expect(notebook_with_same_note_twice.remove("Shopping list")).to eq("2 notes named 'Shopping list' deleted!")
+    end
+
+    it "doesn't show the deleted note" do
+      notebook_with_notes.remove("Shopping list")
+      expect(notebook_with_notes.list).to eq("Here are your note titles:\nWho am I?")
+    end
+
+    it 'returns a friendly message when no notes match title' do
+      expect(notebook_with_notes.remove("This note title does not exist")).to eq("Sorry, no notes here!")
+    end
+
+    it 'returns a friendly message when there are no notes' do
+      expect(notebook.remove("This note title does not exist")).to eq("Sorry, no notes here!")
+
+    end
+  end
 end

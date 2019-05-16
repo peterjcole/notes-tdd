@@ -3,7 +3,7 @@ require 'note'
 describe 'note' do
   let(:note) { Note.new }
 
-  context 'when creating, then setting, note' do
+  context 'when creating an empty note then setting values' do
     it 'lets the user know they have created a note' do
       expect(note.set("Shopping list", "Bread, milk, avocados")).to eq("New note created. Title: Shopping list. Body: Bread, milk, avocados")
     end
